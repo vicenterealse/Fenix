@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fenix Barbershop - Experiencia Innovadora</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #FF4500;
+            --secondary-color: #FF8C00;
+            --accent-color: #1DE5E2;
+            --dark-color: #121212;
+            --light-color: #F4F4F4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .app-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Navigation Styles */
+        .nav-glass {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            backdrop-filter: blur(15px);
+            background: rgba(18, 18, 18, 0.8);
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--light-color);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Section Styles */
+        .section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 3rem;
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            height: 100vh;
+            background: url('https://static.vecteezy.com/system/resources/previews/023/291/641/non_2x/the-rising-phoenix-with-ai-generated-free-photo.jpg') center/cover;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            color: var(--light-color);
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-color);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 69, 0, 0.4);
+        }
+
+        /* Inicio (Objetivo, Misión, Visión) Styles */
+        .inicio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .inicio-card {
+            background: linear-gradient(135deg, #1E1E1E, #2A2A2A);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.4s ease;
+        }
+
+        .inicio-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .inicio-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Servicios Styles */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #1E1E1E, #2A2A2A);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        /* Perfumes (Portafolio) Styles */
+        .perfumes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .perfume-card {
+            background: linear-gradient(135deg, #1E1E1E, #2A2A2A);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .perfume-card img {
+            max-width: 200px;
+            height: auto;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+        }
+
+        .perfume-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Reservar (Formulario) Styles */
+        .reservar-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #1E1E1E, #2A2A2A);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            border: 1px solid var(--secondary-color);
+            border-radius: 5px;
+        }
+
+        /* Contacto Styles */
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: var(--accent-color);
+            font-size: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .nav-content, .contacto-grid, .perfumes-grid {
+                flex-direction: column;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        .inicio-section {
+        position: relative;
+        overflow: hidden;
+        max-height: 300px;
+        transition: max-height 0.3s ease;
+    }
+
+    .inicio-section .section-content {
+        display: none;
+        padding-top: 1rem;
+    }
+
+    .inicio-section.active .section-content {
+        display: block;
+    }
+
+    .inicio-section h3 {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .inicio-section h3::after {
+        content: '▼';
+        font-size: 0.7em;
+        transition: transform 0.3s ease;
+    }
+
+    .inicio-section.active h3::after {
+        transform: rotate(180deg);
+    }
+    .section {
+        display: none;
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .hero-section {
+        display: flex;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-glass">
+        <div class="app-container nav-content">
+            <div class="logo">
+                <i class="fas fa-fire"></i> Fenix
+            </div>
+            <div class="nav-links">
+                <a href="#inicio">Inicio</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#perfumes">Perfumes</a>
+                <a href="#reservar">Reservar</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="app-container hero-content">
+            <h1 class="hero-title">Fenix Barbershop</h1>
+            <p class="hero-subtitle">Transforma tu estilo, renueva tu imagen</p>
+            <a href="#reservar" class="cta-button">Reserva Ahora</a>
+        </div>
+    </section>
+
+    <!-- Inicio Section (Objetivo, Misión, Visión) -->
+    <section id="inicio" class="section app-container">
+        <div class="app-container">
+        <h2 class="section-title">Sobre Nosotros</h2>
+        <div class="inicio-grid">
+            <div class="inicio-section inicio-card">
+                <h3>Objetivo</h3>
+                <div class="section-content">
+                    <p>Crear una experiencia única que vaya más allá de un simple corte de cabello. Buscamos transformar la percepción de nuestros clientes, ofreciendo un servicio que combina calidad profesional con un ambiente acogedor.</p>
+                </div>
+            </div>
+            <div class="inicio-section inicio-card">
+                <h3>Misión</h3>
+                <div class="section-content">
+                    <p>Ser el referente en estilo y cuidado masculino, proporcionando servicios de alta calidad que realcen la confianza y la imagen de cada cliente. Nos comprometemos a ofrecer un servicio personalizado y un ambiente que invite a la relajación.</p>
+                </div>
+            </div>
+            <div class="inicio-section inicio-card">
+                <h3>Visión</h3>
+                <div class="section-content">
+                    <p>Convertirnos en el destino principal para hombres que buscan más que un simple corte de cabello. Aspiramos a expandir nuestra presencia, innovar constantemente y crear una experiencia que defina los estándares de cuidado masculino.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- Servicios Section -->
+    <section id="servicios" class="section app-container">
+        <div class="app-container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-cut"></i>
+                    <h3>Corte Clásico</h3>
+                    <p>Estilo tradicional perfecto</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-ruler"></i>
+                    <h3>Degradado</h3>
+                    <p>Técnica moderna de transición</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-spray-can"></i>
+                    <h3>Tinte</h3>
+                    <p>Coloración profesional</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-shower"></i>
+                    <h3>Lavado de Cabello</h3>
+                    <p>Tratamiento revitalizante</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Perfumes (Portafolio) Section -->
+<section id="perfumes" class="section app-container">
+    <div class="app-container">
+        <h2 class="section-title">Nuestros Perfumes</h2>
+        <div class="perfumes-grid">
+            <div class="perfume-card">
+                <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRzpRDkcbyXxy0VY8TGo1UcAkUirlgWN9kqU1JCnSZnZ3b1-HAhPmLGKWXkYX9lhTPAP4Vc1ohY9QiJj7iYrSPjty6QeezXJ-Rkt4amsFC_i3z0rIB6OgtQIh4x9NxAGSB_HGxUY20&usqp=CAc" alt="Perfume 1">
+                <h3>Fenix Intense</h3>
+                <p>Fragancia masculina premium</p>
+            </div>
+            <div class="perfume-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXooNKe6jjVjP9wHVL0lxgPW6LDPkUwFT6pw&s" alt="Perfume 2">
+                <h3>Urban Spirit</h3>
+                <p>Aroma moderno y fresco</p>
+            </div>
+            <div class="perfume-card">
+                <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRGyOsUf-tKnpEAogzpel2v-gQzqY4nJ_4PXKzk-IpJFhqy9Wv9jj89sf2WHHe833Ypi-en8yUeFLGUjQrxZQDV4T6l2n-2r4CV8Vdlk_ILgLN8rWdeb86ZkOIbLp7eAbfF9nsRsw&usqp=CAc" alt="Midnight Noir">
+                <h3>Midnight Noir</h3>
+                <p>Elegancia nocturna</p>
+            </div>
+            <div class="perfume-card">
+                <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSz9qlLRKhYjqRfvhSMLWa1ljSY5ZTfUz2e5Sm62qoA3X6HaHzFrBRWpx-ZAA4VA_Wosj3WOeXZAmRmqvIQ1xVJMY9y47q3YEuAHllBNhT_ThrucOC5jxkFuz6E9eZttQZ6Q37IBw&usqp=CAc" alt="Wild Breeze">
+                <h3>Wild Breeze</h3>
+                <p>Aventura y libertad</p>
+            </div>
+            <div class="perfume-card">
+                <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQk-0IgFm3nC6yvUKg5uAdX_eDobFZZFB6UX6hBHs8EDtQlH4sZnvxBzMpICbBrCQgdqXmv3ZMpLL_wVeFG5F3tnMvVR3lursLsFD4pUOdCMqebiMPthqei0F4ldFo9RjGNrP4HDC0T&usqp=CAc" alt="Ocean Depth">
+                <h3>Ocean Depth</h3>
+                <p>Frescura marina intensa</p>
+            </div>
+            <div class="perfume-card">
+                <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTZvRoKNdtHmsi1o5S2_c5o51RovhpeQVvXqqkjSshfDKbszCFiW9c68xT1tIhO4-0I38LBTtG2DeGE7WZHNFNDJAZeT8QFMp2w_JOcTocIxYHAQHBoBFIk22CNpSpsJzT2y2HXyco&usqp=CAc" alt="Desert Oasis">
+                <h3>Desert Oasis</h3>
+                <p>Calidez y misterio</p>
+            </div>
+            <div class="perfume-card">
+                <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSlYtzyEvY6BUYH-6P47ECWl1b7R6hzw9PaHADjczdw_e3JNS8lS6NYfOZ88G8Ms_ms2EYKZDKnKKreydi3T5Op0DZ9IEO7QKIZ9-bcqWy7uHyU-Oy6F2Oj6cZBh-u5DMxKh7w29bc&usqp=CAc" alt="Urban Legend">
+                <h3>Urban Legend</h3>
+                <p>Estilo metropolitano</p>
+            </div>
+            <div class="perfume-card">
+                <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQn9cFYByzsKPQnsrfge3-y58lqWQrsnwJEH3-9raOyBn73ix5gimWhNjilu35o0tZVIOCtMJQS9HiGHObLjP0WMmsWu55WEDlb7M6CQPz3mpwcWOVb68ScLMtrKx80NyEI2awiQEo&usqp=CAc" alt="Mountain Echo">
+                <h3>Mountain Echo</h3>
+                <p>Fragancia aventurera</p>
+            </div>
+            <div class="perfume-card">
+                <img src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSgbQfUL59KtKY6ye88wcslNC_CKXtUxmyTT5dLIJK-FZNEQmZdbUaIDw28tX3VF24LnopgG9vMJcA-jyJMlsc1ALGyohTBGIGtq7ezYaHGbMHMdoSSZbuE2Pypy53Zyf658R7MjQ&usqp=CAc" alt="Silver Frost">
+                <h3>Silver Frost</h3>
+                <p>Intensidad polar</p>
+            </div>
+            <div class="perfume-card">
+                <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSkgqacg3rogN7hjY4ECp2k3tr9SjbqTFEbJU226DrQCmh6iXzKJYt_CloWDkBcuyhLCoyY5dXgCMKjk6d3IsMLEbgUwUde352r8LBbUkIVmiea8eC89EOgkzsnfPo31hwohVr8Acc&usqp=CAc" alt="Golden Hour">
+                <h3>Golden Hour</h3>
+                <p>Calidez y sofisticación</p>
+            </div>
+            <div class="perfume-card">
+                <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSHBVvzK1miTmOnV7pKLR_w-gHU0LK3JeC15mNh8AU5jHmNOWe2rTdJ0RqxQuFQdRiApHva2Uo2IOJ8egVGIn5WNZ4X9nvemq3I8khRXsa1o79GCdieVsdmPbgnXhylLuy79KyF_Q&usqp=CAc" alt="Rebel Spirit">
+                <h3>Rebel Spirit</h3>
+                <p>Audacia y pasión</p>
+            </div>
+            <div class="perfume-card">
+                <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSH8K77Ic7dZlx3jPvfaJrd63W8ciMj54ThxBM7rclmuTSOt2OJWJasEZeFE3kxYnthh9CjjU2i0w6khsPk2nzgxQz-meoWKX46rbotc6lI84HJRiiK0IBzaV8lgaZw2nTBQgoQMTrQ&usqp=CAc" alt="Mystic Wind">
+                <h3>Mystic Wind</h3>
+                <p>Enigma y seducción</p>
+            </div>
+        </div>
+    </div>
+</section>
+   <!-- Reservar (Formulario) Section -->
+<section id="reservar" class="section app-container">
+    <div class="app-container">
+        <h2 class="section-title">Reserva y Compra</h2>      
+        <!-- Servicio Booking Form -->
+        <div class="form-section">
+            <form class="reservar-form">
+                <div class="form-group">
+                    <label for="name">Nombre Completo</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Teléfono</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="service">Servicio</label>
+                    <select id="service" name="service" required>
+                        <option value="">Selecciona un servicio</option>
+                        <option value="corte-clasico">Corte Clásico</option>
+                        <option value="degradado">Degradado</option>
+                        <option value="tinte">Tinte</option>
+                        <option value="lavado">Lavado de Cabello</option>
+                        <option value="barba">Corte de Barba</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Fecha</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje Adicional</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="cta-button">Reservar Cita</button>
+                </div>
+            </form>
+        </div>
+        <div class="form-section">
+            <form class="reservar-form">
+                <div class="form-group">
+                    <label for="service">Selecciona Perfume</label>
+                    <select id="service" name="service" required>
+                        <option value="">Elige un perfume</option>
+                        <option value="fenix-intense">Fenix Intense</option>
+                        <option value="urban-spirit">Urban Spirit</option>
+                        <option value="midnight-noir">Midnight Noir</option>
+                        <option value="wild-breeze">Wild Breeze</option>
+                        <option value="ocean-depth">Ocean Depth</option>
+                        <option value="desert-oasis">Desert Oasis</option>
+                        <option value="urban-legend">Urban Legend</option>
+                        <option value="mountain-echo">Mountain Echo</option>
+                        <option value="silver-frost">Silver Frost</option>
+                        <option value="golden-hour">Golden Hour</option>
+                        <option value="rebel-spirit">Rebel Spirit</option>
+                        <option value="mystic-wind">Mystic Wind</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Cantidad</label>
+                    <input type="number" id="quantity" name="quantity" min="1" max="10" required>
+                </div>
+                <div class="form-group">
+                    <label for="customer-name">Nombre Completo</label>
+                    <input type="text" id="customer-name" name="customer-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone-purchase">Teléfono</label>
+                    <input type="tel" id="phone-purchase" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="delivery-address">Dirección de Entrega</label>
+                    <textarea id="delivery-address" name="delivery-address" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="payment-method">Método de Pago</label>
+                    <select id="payment-method" name="payment-method" required>
+                        <option value="">Selecciona un método de pago</option>
+                        <option value="tarjeta-credito">Tarjeta de Crédito</option>
+                        <option value="tarjeta-debito">Tarjeta de Débito</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="transferencia">Transferencia Bancaria</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="cta-button">Comprar Perfume</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+    <!-- Contacto Section -->
+    <section id="contacto" class="section app-container">
+        <div class="app-container">
+            <h2 class="section-title">Contacto</h2>
+            <div class="contacto-grid">
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.7819129077146!2d-75.59481472513568!3d6.178746627550407!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e46824ed0aaaaab%3A0xe022dd499943dd9d!2sMedell%C3%ADn%2C%20Antioquia%2C%20Colombia!5e0!3m2!1ses!2sus!4v1698371489144!5m2!1ses!2sus" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <div>
+                    <h3>Información de Contacto</h3>
+                    <p><strong>Dirección:</strong> Centro, Santiago Tulantepec, Mexico</p>
+                    <p><strong>Teléfono:</strong> +52 775 111 84 63/p>
+                    <p><strong>Email:</strong> contacto@fenixbarbershop.com</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="section">
+        <div class="app-container">
+            <p>&copy; 2024 Fenix Barbershop. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('.inicio-section');
+        
+        sections.forEach(section => {
+            const header = section.querySelector('h3');
+            const content = section.querySelector('.section-content');
+            
+            header.addEventListener('click', () => {
+                // Close all other sections
+                sections.forEach(otherSection => {
+                    if (otherSection !== section) {
+                        otherSection.classList.remove('active');
+                    }
+                });
+                
+                // Toggle the current section
+                section.classList.toggle('active');
+            });
+        });
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+        // Select all main sections
+        const sections = [
+            'inicio', 
+            'servicios', 
+            'perfumes', 
+            'reservar', 
+            'contacto'
+        ];
+
+        // Add click event to navigation links
+        sections.forEach(sectionId => {
+            const navLink = document.querySelector(`a[href="#${sectionId}"]`);
+            const section = document.getElementById(sectionId);
+
+            navLink.addEventListener('click', (e) => {
+                // Prevent default anchor behavior
+                e.preventDefault();
+
+                // Hide all sections
+                sections.forEach(id => {
+                    const currentSection = document.getElementById(id);
+                    if (currentSection) {
+                        currentSection.style.display = 'none';
+                    }
+                });
+
+                // Show the clicked section
+                if (section) {
+                    section.style.display = 'block';
+                }
+
+                // Scroll to the section
+                section.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Initially hide all sections except the hero section
+        sections.forEach(sectionId => {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.style.display = 'none';
+            }
+        });
+
+        // Optional: Ensure hero section is visible by default
+        const heroSection = document.querySelector('.hero-section');
+        if (heroSection) {
+            heroSection.style.display = 'flex';
+        }
+    });
+    </script>
+
+</body>
+</html>
